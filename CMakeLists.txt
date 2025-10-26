@@ -34,53 +34,17 @@ endif()
 # Добавление суфикса в имя дебажной библиотеки, нужно чтобы установить различия в названии. Возможно от этого стоит отказаться
 set(CMAKE_DEBUG_POSTFIX -dev)
 
-
-# -----------------------------------------------------------------------------------------------------------------------------------
-# Настройка таргета библиотеки
-# -----------------------------------------------------------------------------------------------------------------------------------
-
-# Добавление библиотеки
-add_library(lame-hardware STATIC)
-
-# Добавляем alias для библиотеки, полезно для избежания конфликта имен
-add_library(lame::hardware ALIAS lame-hardware)
-
-# VERSION - Устанавливаем версию библиотеки из версии проекта
-# SOVERSION - Версия совместимости - определяет версию API стоит изменять, когда меняется API, поведение или используемый интерфейс
-set_target_properties(
-    lame-hardware
-    PROPERTIES VERSION ${PROJECT_VERSION}
-               SOVERSION ${PROJECT_VERSION_MAJOR}
-)
-
-target_sources(lame-hardware 
-    PRIVATE 
-    src/device/Led.c
-)
-
-
-target_include_directories(lame-hardware
-    # Пути включения доступные только библиотеке
-    PRIVATE 
-    src 
-    include/lame/device
-    include/lame/drivers
-
-    # Пути включения доступные самой библиотеке и пользователям
-    PUBLIC
-    # Используется выражения генератора
-    # При сборке BUILD_INTERFACE заменится на include
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> 
-    # При установке INSTALL_INTERFACE заменится на католог включения при установки
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
-
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Добавление других таргетов
 # -----------------------------------------------------------------------------------------------------------------------------------
 
-if(Lame_Hardware_BUILD_TESTS)
-    message(STATUS "Включено тестирование библиотеки")
-    enable_testing()
-    add_subdirectory(tests)
-endif()
+add_subdirectory(drivers)
+set(Lame_Device_BUILD_TESTS ON)
+add_subdirectory(device)
+
+
+# if(Lame_Hardware_BUILD_TESTS)
+#     message(STATUS "Включено тестирование библиотеки")
+#     # enable_testing()
+#     # add_subdirectory(tests)
+# endif()

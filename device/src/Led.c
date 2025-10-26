@@ -2,7 +2,7 @@
 
 // #include <lame_config.h>
 
-#include <lame/drivers/Pin.h>
+#include <lame/Pin.h>
 // #include <lame/SoftTimer.h>
 
 #include <stddef.h>

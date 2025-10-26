@@ -1,3 +1,5 @@
+message(STATUS "Включено тестирование библиотеки lame::device")
+
 enable_language(CXX)
 
 # Используется фреймворк CppUTest для тестирования
@@ -9,5 +11,5 @@ find_package(CppUTest REQUIRED)
 enable_testing()
 
 add_executable(LedTest ${CMAKE_CURRENT_SOURCE_DIR}/LedTest.cpp)
-target_link_libraries(LedTest lame::hardware CppUTest::CppUTest CppUTest::CppUTestExt)
+target_link_libraries(LedTest lame::device CppUTest::CppUTest CppUTest::CppUTestExt)
 add_test(LedTest LedTest)

@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdbool.h>
 
 // typedef enum LAME_Pin_Mode {
@@ -26,3 +30,6 @@ void LAME_Pin_SetActive(LAME_Pin handle, bool state);
 bool LAME_Pin_GetActive(const LAME_Pin handle);
 void LAME_Pin_Toggle(LAME_Pin handle);
 
+#ifdef __cplusplus
+}
+#endif

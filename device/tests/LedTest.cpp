@@ -1,4 +1,4 @@
-#include <lame/device/Led.h>
+#include <lame/Led.h>
 
 #include <CppUTest/CommandLineTestRunner.h>
 #include <CppUTest/TestHarness.h>
@@ -20,11 +20,11 @@ void teardown()
 
 TEST(EventTests, clearAfterCreate)
 {
-    CHECK_TRUE(true);
+    CHECK_TRUE(false);
 }
 
 int main(int argc, char **argv)
 {
-    printf("\nLed test");
+    printf("\nLed test1");
     return RUN_ALL_TESTS(argc, argv);
 }
