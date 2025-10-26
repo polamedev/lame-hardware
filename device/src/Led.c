@@ -81,16 +81,18 @@ void LAME_Led_SetActive(LAME_Led led, bool active)
         active = !active;
     }
 
-    LAME_Pin_SetActive(led->pin, active);
+    // LAME_Pin_SetActive(led->pin, active);
 }
 
 bool LAME_Led_GetActive(const LAME_Led led)
 {
-    bool active = LAME_Pin_GetActive(led->pin);
-    if (led->activeLow) {
-        active = !active;
-    }
-    return active;
+    // bool active = LAME_Pin_GetActive(led->pin);
+    // if (led->activeLow) {
+    //     active = !active;
+    // }
+    // return active;
+
+    return true;
 }
 
 void LAME_Led_SetBlinkCount(LAME_Led led, unsigned blinkCount)
