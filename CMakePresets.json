@@ -12,8 +12,7 @@
       "binaryDir": "${sourceDir}/_build",
       "hidden": true,
       "cacheVariables": {
-        "Lame_Hardware_BUILD_TESTS": "ON"
-        // "Lame_Software_BUILD_EXAMPLES": "ON"
+        "LAME_HARDWARE_BUILD_TESTS": "ON"
       }
     },
     {

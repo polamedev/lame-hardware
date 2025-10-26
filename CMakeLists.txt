@@ -18,7 +18,7 @@ project(
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 # Опции сборки
-option(Lame_Hardware_BUILD_TESTS    "Build lame::hardware tests"         OFF)  # Нужно ли собирать тесты для библиотеки
+option(LAME_HARDWARE_BUILD_TESTS    "Build lame::hardware all tests"         OFF)  # Нужно ли собирать тесты для библиотеки
 # option(Lame_Hardware_BUILD_EXAMPLES "Build lame::hardware examples"      OFF)  # Нужно ли собирать примеры
 # option(Lame_Hardware_BUILD_DOCS     "Build lame::hardware documentation" OFF)  # Нужно ли собирать документацию
 
@@ -31,6 +31,17 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 
+# Включаем тесты для всех поддиректорий
+if(LAME_HARDWARE_BUILD_TESTS)
+    set(LAME_DEVICE_BUILD_TESTS ON)
+    set(LAME_DRIVERS_MOCKS_BUILD_TESTS ON)
+endif()
+
+# Включать тестирование необходимо на самом верхнем уровне
+if(LAME_DEVICE_BUILD_TESTS OR LAME_DEVICE_BUILD_TESTS OR LAME_HARDWARE_BUILD_TESTS)
+    enable_testing()
+endif()
+
 # Добавление суфикса в имя дебажной библиотеки, нужно чтобы установить различия в названии. Возможно от этого стоит отказаться
 set(CMAKE_DEBUG_POSTFIX -dev)
 
@@ -39,12 +50,5 @@ set(CMAKE_DEBUG_POSTFIX -dev)
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 add_subdirectory(drivers)
-set(Lame_Device_BUILD_TESTS ON)
 add_subdirectory(device)
-
-
-# if(Lame_Hardware_BUILD_TESTS)
-#     message(STATUS "Включено тестирование библиотеки")
-#     # enable_testing()
-#     # add_subdirectory(tests)
-# endif()
+add_subdirectory(drivers-mocks)

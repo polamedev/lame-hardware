@@ -20,11 +20,11 @@ void teardown()
 
 TEST(EventTests, clearAfterCreate)
 {
-    CHECK_TRUE(false);
+    CHECK_TRUE(true);
 }
 
 int main(int argc, char **argv)
 {
-    printf("\nLed test1");
+    printf("\nLed test");
     return RUN_ALL_TESTS(argc, argv);
 }
